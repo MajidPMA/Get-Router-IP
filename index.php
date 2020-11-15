@@ -1,25 +1,25 @@
 <?php 
   
 // set an username
-define("USERNAME", "trdstudionas"); 
+define("USERNAME", "Your UserName"); 
 
 // set a secure password
-define("PASSWORD", "taera88106331"); 
+define("PASSWORD", "Your Password"); 
 
 function redirect($url)
 {
     if (!headers_sent()){
-        header("Location: $url");
+        header("Location: http://$url");
     }else{
-        echo "<script type='text/javascript'>window.location.href='$url'</script>";
-        echo "<noscript><meta http-equiv='refresh' content='0;url=$url'/></noscript>";
+        echo "<script type='text/javascript'>window.location.href='http://$url'</script>";
+        echo "<noscript><meta http-equiv='refresh' content='0;url=http://$url'/></noscript>";
     }
     exit;
 }
 
 if(empty($_GET["Username"]) || $_GET["Username"] != USERNAME || empty($_GET["Password"]) || $_GET["Password"] != PASSWORD) {
     
-    $myfile = fopen("IP.md", "r") or die("Unable to open file!");
+    $myfile = fopen("IP.db", "r") or die("Unable to open file!");
     $LIP =  fread($myfile,32);
     fclose($myfile);
     redirect($LIP);
@@ -31,7 +31,7 @@ if(empty($_GET["Username"]) || $_GET["Username"] != USERNAME || empty($_GET["Pas
 
 
 
-    $myfile = fopen("IP.md", "w") or die("Unable to open file!");
+    $myfile = fopen("IP.db", "w") or die("Unable to open file!");
     fwrite($myfile, $myIP);
     fclose($myfile);
     
